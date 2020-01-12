@@ -7,15 +7,30 @@ class ProductsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Drawer(
-        child: Column(
+        child: ListView(
+          padding: EdgeInsets.zero,
           children: <Widget>[
-            AppBar(
-              automaticallyImplyLeading: false,
-              title: Text('Choose Item'),
+            Container(
+              height: 120.0,
+              child: DrawerHeader(
+                child: Text(
+                  'Drawer Header',
+                  style: TextStyle(color: Colors.white, fontSize: 30.0),
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.black54,
+                ),
+              ),
             ),
             ListTile(
               title: Text('ManageProduct'),
               onTap: () {},
+            ),
+            ListTile(
+              title: Text('Add Product'),
+              onTap: () {
+                Navigator.pop(context);
+              },
             )
           ],
         ),
