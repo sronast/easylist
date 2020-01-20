@@ -16,7 +16,7 @@ class ProductManager extends StatefulWidget {
 
 class _ProductManagerState extends State<ProductManager> {
   final List<Map<String,dynamic>> _products = [];
-  // never assign new value---final -> can be updated; never change value----const -> nth allowed;
+  // never assign new value---final -> but can be updated; never change value----const -> noh allowed;
 
   @override
   void initState() {
@@ -41,7 +41,7 @@ class _ProductManagerState extends State<ProductManager> {
 
   @override
   Widget build(BuildContext context) {
-    return (Column(
+    return Column(
       children: <Widget>[
         Container(
           margin: EdgeInsets.all(10.0),
@@ -49,6 +49,6 @@ class _ProductManagerState extends State<ProductManager> {
         ),
         Expanded(child: Products(_products, _deleteProduct)),
       ],
-    ));
+    );
   }
 }
