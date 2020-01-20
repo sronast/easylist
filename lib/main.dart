@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter/rendering.dart';
 
-import './pages/page_manager.dart';
+import './app.dart';
 
-void main() {
-  // debugPaintSizeEnabled = true;
-  runApp(PageManager());
-}
+void main() => runApp(MyApp());
