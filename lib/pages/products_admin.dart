@@ -1,9 +1,8 @@
 import 'package:easylist/pages/product_create.dart';
 import 'package:easylist/pages/product_list.dart';
-import 'package:easylist/pages/products.dart';
 import 'package:flutter/material.dart';
 
-class ManageProduct extends StatelessWidget {
+class ProductAdminPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
@@ -18,8 +17,7 @@ class ManageProduct extends StatelessWidget {
               ListTile(
                 title: Text('All Products'),
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => HomePage()));
+                  Navigator.pushReplacementNamed(context, '/products');
                 },
               )
             ],

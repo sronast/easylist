@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:easylist/pages/products.dart';
-
 class AuthPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,11 +10,7 @@ class AuthPage extends StatelessWidget {
         child: RaisedButton(
           child: Text('LOGIN'),
           onPressed: () {
-            Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => HomePage()));
-
+            Navigator.pushReplacementNamed(context, '/products');
           },
         ),
       ),
