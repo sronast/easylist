@@ -20,7 +20,11 @@ class Products extends StatelessWidget {
                 child: Text('Details'),
                 onPressed: () {
                   Navigator.pushNamed<bool>(context, '/product/$index')
-                      .then((onValue) => _deleteProduct(index));
+                      .then((onValue) {
+                    if (onValue == true) {
+                      return _deleteProduct(index);
+                    }
+                  });
                 },
               )
             ],
