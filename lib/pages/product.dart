@@ -5,27 +5,6 @@ class ProductPage extends StatelessWidget {
   final Map<String, dynamic> _product;
   ProductPage(this._product);
 
-  _showWarningDialog(BuildContext context) {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Are you sure?'),
-            content: Text('This cannot be undone'),
-            actions: <Widget>[
-              FlatButton(
-                  onPressed: () => Navigator.pop(context), child: Text('NO')),
-              FlatButton(
-                  child: Text('YES'),
-                  onPressed: () {
-                    Navigator.pop(context);
-                    Navigator.pop(context, true);
-                  }),
-            ],
-          );
-        });
-  }
-
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
@@ -51,7 +30,9 @@ class ProductPage extends StatelessWidget {
                     'Delete',
                     style: TextStyle(color: Colors.white70),
                   ),
-                  onPressed: () => _showWarningDialog(context),
+                  onPressed: () {
+                    Navigator.pop(context, true);
+                  },
                 ),
               )
             ],
