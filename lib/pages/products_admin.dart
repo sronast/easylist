@@ -3,6 +3,10 @@ import 'package:easylist/pages/product_list.dart';
 import 'package:flutter/material.dart';
 
 class ProductAdminPage extends StatelessWidget {
+  final Function _addProduct;
+  final Function _deleteProduct;
+  ProductAdminPage(this._addProduct, this._deleteProduct);
+
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
@@ -40,7 +44,7 @@ class ProductAdminPage extends StatelessWidget {
         ),
         body: Center(
             child: TabBarView(
-          children: <Widget>[ProductCreatePage(), ProductListPage()],
+          children: <Widget>[ProductCreatePage(_addProduct), ProductListPage()],
         )),
       ),
     );

@@ -14,8 +14,11 @@ class ProductPage extends StatelessWidget {
             content: Text('This cannot be undone'),
             actions: <Widget>[
               FlatButton(
-                  onPressed: () => Navigator.pop(context), child: Text('NO')),
+                  color: Colors.green,
+                  onPressed: () => Navigator.pop(context),
+                  child: Text('NO')),
               FlatButton(
+                  color: Colors.red,
                   child: Text('YES'),
                   onPressed: () {
                     Navigator.pop(context);
@@ -39,7 +42,7 @@ class ProductPage extends StatelessWidget {
           body: Column(
             children: <Widget>[
               Container(margin: EdgeInsets.all(10.0)),
-              Image.asset(_product['path']),
+              Image.asset(_product['image']),
               Center(
                 child: Text('Your Product detail'),
               ),

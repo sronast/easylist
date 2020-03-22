@@ -16,7 +16,6 @@ class _MyAppState extends State<MyApp> {
   void _addProduct(Map<String, dynamic> p) {
     setState(() {
       _products.add(p);
-      // print(_products);
     });
   }
 
@@ -28,14 +27,17 @@ class _MyAppState extends State<MyApp> {
 
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(primarySwatch: Colors.green, accentColor: Colors.brown),
+      theme:
+          ThemeData(primarySwatch: Colors.green, accentColor: Colors.blueGrey),
       home: AuthPage(),
       debugShowCheckedModeBanner: false,
       //named routes
       routes: {
-        '/products': (BuildContext context) =>
-            ProductsPage(_products, _addProduct, _deleteProduct),
-        '/admin': (BuildContext context) => ProductAdminPage()
+        '/products': (BuildContext context) => ProductsPage(
+              _products,
+            ),
+        '/admin': (BuildContext context) =>
+            ProductAdminPage(_addProduct, _deleteProduct)
       },
       //routes with data
       onGenerateRoute: (RouteSettings settings) {
@@ -55,8 +57,7 @@ class _MyAppState extends State<MyApp> {
       },
       onUnknownRoute: (RouteSettings settings) {
         return MaterialPageRoute(
-            builder: (BuildContext context) =>
-                ProductsPage(_products, _addProduct, _deleteProduct));
+            builder: (BuildContext context) => ProductsPage(_products));
       },
     );
   }
