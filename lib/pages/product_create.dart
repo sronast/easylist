@@ -20,20 +20,24 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
       margin: EdgeInsets.all(10.0),
       child: ListView(
         children: <Widget>[
+          SizedBox(
+            height:10.0,
+          ),
           TextField(
             decoration: InputDecoration(
-              labelText: 'Product Title',
-            ),
+                labelText: 'Product Title', border: OutlineInputBorder()),
             onChanged: (String value) {
               setState(() {
                 _titleValue = value;
               });
             },
           ),
+          SizedBox(
+            height:10.0,
+          ),
           TextField(
             decoration: InputDecoration(
-              labelText: 'Description',
-            ),
+                labelText: 'Description', border: OutlineInputBorder()),
             maxLines: 4,
             onChanged: (String value) {
               setState(() {
@@ -41,8 +45,12 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
               });
             },
           ),
+          SizedBox(
+            height:10.0,
+          ),
           TextField(
-            decoration: InputDecoration(labelText: 'Price'),
+            decoration: InputDecoration(
+                labelText: 'Price', border: OutlineInputBorder()),
             keyboardType: TextInputType.numberWithOptions(decimal: true),
             onChanged: (String value) {
               setState(() {
@@ -51,7 +59,7 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
             },
           ),
           SizedBox(
-            height: 50.0,
+            height:10.0,
           ),
           RaisedButton(
               child: Text('Save'),

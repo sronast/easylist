@@ -37,7 +37,7 @@ class ProductPage extends StatelessWidget {
       },
       child: Scaffold(
           appBar: AppBar(
-            title: Text(_product['name']),
+            title: Text(_product['title']),
           ),
           body: Column(
             children: <Widget>[
