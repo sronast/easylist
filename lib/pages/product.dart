@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
+import '../widgets/ui_elements/title_default.dart';
 
 class ProductPage extends StatelessWidget {
   final Map<String, dynamic> _product;
@@ -29,6 +30,29 @@ class ProductPage extends StatelessWidget {
         });
   }
 
+  Widget _buildAddressPriceRow() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Text(
+          'Pulchowk, Lalitpur',
+          style: TextStyle(color: Colors.grey, fontFamily: 'Oswald'),
+        ),
+        Container(
+          margin: EdgeInsets.symmetric(horizontal: 5.0),
+          child: Text(
+            '|',
+            style: TextStyle(color: Colors.grey, fontFamily: 'Oswald'),
+          ),
+        ),
+        Text(
+          '\$' + _product['price'].toString(),
+          style: TextStyle(fontFamily: 'Oswald', color: Colors.grey),
+        )
+      ],
+    );
+  }
+
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
@@ -41,10 +65,17 @@ class ProductPage extends StatelessWidget {
           ),
           body: Column(
             children: <Widget>[
-              Container(margin: EdgeInsets.all(10.0)),
               Image.asset(_product['image']),
-              Center(
-                child: Text('Your Product detail'),
+              SizedBox(height: 10.0),
+              TitleDefault(_product['title']),
+              SizedBox(height: 10.0),
+              _buildAddressPriceRow(),
+              SizedBox(
+                height: 10.0,
+              ),
+              Text(
+                _product['description'],
+                style: TextStyle(fontSize: 18.0),
               ),
               Container(
                 alignment: Alignment.center,

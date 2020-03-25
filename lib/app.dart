@@ -28,7 +28,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme:
-          ThemeData(primarySwatch: Colors.green, accentColor: Colors.blueGrey),
+          ThemeData(primarySwatch: Colors.green, accentColor: Colors.blueGrey, buttonColor: Colors.blueGrey),
       home: AuthPage(),
       debugShowCheckedModeBanner: false,
       //named routes
