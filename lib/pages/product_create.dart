@@ -11,84 +11,107 @@ class ProductCreatePage extends StatefulWidget {
 }
 
 class _ProductCreatePageState extends State<ProductCreatePage> {
-  String _titleValue = '';
-  String _descriptionValue = '';
-  double _priceValue;
+  final Map<String, dynamic> _formData = {
+    'title': null,
+    'description': null,
+    'price': null,
+    'image': 'assets/fruits.png'
+  };
+
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   Widget _buildTitleTextField() {
-    return TextField(
+    return TextFormField(
       decoration: InputDecoration(
           labelText: 'Product Title', border: OutlineInputBorder()),
-      onChanged: (String value) {
-        setState(() {
-          _titleValue = value;
-        });
+      validator: (String value) {
+        if (value.isEmpty || value.trim().length < 3) {
+          return "Minimum length of title should be 3";
+        }
+        return null;
+      },
+      onSaved: (String value) {
+        _formData['title'] = value;
       },
     );
   }
 
   Widget _buildDescriptionTextField() {
-    return TextField(
+    return TextFormField(
       decoration: InputDecoration(
           labelText: 'Description', border: OutlineInputBorder()),
-      maxLines: 4,
-      onChanged: (String value) {
-        setState(() {
-          _descriptionValue = value;
-        });
+      onSaved: (String value) {
+        _formData['description'] = value;
       },
+      validator: (String value) {
+        if (value.isEmpty || value.trim().length < 10) {
+          return "Minimum length of decription should be 10";
+        }
+        return null;
+      },
+      maxLines: 4,
     );
   }
 
   Widget _buildPriceTextField() {
-    return TextField(
+    return TextFormField(
       decoration:
           InputDecoration(labelText: 'Price', border: OutlineInputBorder()),
       keyboardType: TextInputType.numberWithOptions(decimal: true),
-      onChanged: (String value) {
-        setState(() {
-          _priceValue = double.parse(value);
-        });
+      onSaved: (String value) {
+        _formData['price'] = double.parse(value);
+      },
+      validator: (String value) {
+        if (value.isEmpty) {
+          return "Price is required";
+        }
+        return null;
       },
     );
   }
 
   void _submitForm() {
-    final Map<String, dynamic> product = {
-      'title': _titleValue,
-      'description': _descriptionValue,
-      'price': _priceValue,
-      'image': 'assets/fruits.png'
-    };
-    widget._addProduct(product);
-    Navigator.pushReplacementNamed(context, '/products');
+    if (_formKey.currentState.validate()) {
+      _formKey.currentState.save();
+
+      widget._addProduct(_formData);
+      Navigator.pushReplacementNamed(context, '/products');
+    }
   }
 
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(10.0),
-      child: ListView(
-        children: <Widget>[
-          SizedBox(
-            height: 10.0,
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: Container(
+        margin: EdgeInsets.all(10.0),
+        child: Form(
+          key: _formKey,
+          child: ListView(
+            children: <Widget>[
+              SizedBox(
+                height: 10.0,
+              ),
+              _buildTitleTextField(),
+              SizedBox(
+                height: 10.0,
+              ),
+              _buildDescriptionTextField(),
+              SizedBox(
+                height: 10.0,
+              ),
+              _buildPriceTextField(),
+              SizedBox(
+                height: 10.0,
+              ),
+              RaisedButton(
+                  child: Text('Save'),
+                  textColor: Colors.white70,
+                  onPressed: _submitForm),
+            ],
           ),
-          _buildTitleTextField(),
-          SizedBox(
-            height: 10.0,
-          ),
-          _buildDescriptionTextField(),
-          SizedBox(
-            height: 10.0,
-          ),
-          _buildPriceTextField(),
-          SizedBox(
-            height: 10.0,
-          ),
-          RaisedButton(
-              child: Text('Save'),
-              textColor: Colors.white70,
-              onPressed: _submitForm),
-        ],
+        ),
       ),
     );
   }
